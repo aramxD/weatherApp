@@ -34,11 +34,16 @@ export default styled(Login)`
     height:100vh;
 
     .hero-img{
+        display: grid;
+    place-items: center;
         width:55%;
         background-color:#1A243D;
+        
     }
     .hero-img>img{
-        width:100%
+        max-width:500px;
+        width:100%;
+        
     }
     .hero-login{
         width:40%;
