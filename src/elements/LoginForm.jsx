@@ -27,7 +27,7 @@ function LoginForm({ className }) {
     event.preventDefault();
 
     if (checkPassword(user, password)) {
-      navigate("/weatherApp");
+      navigate("/weather");
     } else {
       setError(true);
     }
