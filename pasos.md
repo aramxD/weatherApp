@@ -3,7 +3,7 @@ luismiguel.romero@volantetech.com
 
 styled-components ---> Styled elementes (CSS)
 react-router ---> page navigation
-axios ---> Weather API
+
 
 Parte 1 (LogIn)
     // Componenete LogIn FORM
