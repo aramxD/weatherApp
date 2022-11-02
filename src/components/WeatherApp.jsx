@@ -17,8 +17,8 @@ function WeatherApp({ className }) {
     fetchData();
   }, []);
 
-  const todayData = weatherData[0]
-  const tonightData = weatherData[1]
+  const todayData = weatherData.find(day=> day.name ==='Today')
+  const tonightData = weatherData.find(day=> day.name ==='Tonight')
   const nextFiveDayData = [...weatherData].splice(2,10) 
    
 
@@ -35,8 +35,8 @@ function WeatherApp({ className }) {
       <div className="todayWeather">
         
         {todayData?<TodayWeatherCard day={todayData}/>:null}
+        {tonightData?<TodayWeatherCard day={tonightData}/>:null}
         
-        <TodayWeatherCard day={tonightData}/>
       </div>
       <div className="weatherData">
       {nextFiveDayData?.map((day) => {

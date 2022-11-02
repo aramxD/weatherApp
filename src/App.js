@@ -9,7 +9,7 @@ function App() {
       <HashRouter>
         <Routes>
           <Route path="/" element={<Login />} />
-          <Route path="/weatherApp" element={<WeatherApp />}/>
+          <Route path="/weather" element={<WeatherApp />}/>
           <Route path="*" element={<p>Not Found.. Check your url</p>} />
         </Routes>
       </HashRouter>
