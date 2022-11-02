@@ -5,7 +5,7 @@ import WeatherCard from "../elements/WeatherCard";
 
 function WeatherApp({ className }) {
   const [weatherData, setWeatherData] = useState([]);
-   
+
   const [celsius, setCelsius] = useState(true);
 
   useEffect(() => {
@@ -18,17 +18,15 @@ function WeatherApp({ className }) {
     }
     fetchData();
   }, []);
-  
-  const weatherDataF =[]
-  const test = JSON.parse(JSON.stringify(weatherData)).forEach((day) => {
-    day.temperatureUnit = "F";
-    
-    day.temperature = (day.temperature * 1.8 + 32).toFixed(2);
-    
-    weatherDataF.push(day)
-  });
 
- 
+  const weatherDataF = [];
+  JSON.parse(JSON.stringify(weatherData)).forEach((day) => {
+    day.temperatureUnit = "F";
+
+    day.temperature = (day.temperature * 1.8 + 32).toFixed(2);
+
+    weatherDataF.push(day);
+  });
 
   // Datos en Celsius
   const todayData = weatherData.find((day) => day.name === "Today");
@@ -42,15 +40,20 @@ function WeatherApp({ className }) {
 
   return (
     <section className={className}>
-       
-      <label htmlFor="units">C
-      <input
-        type="checkbox"
-        name="units"
-        id="units"
-        checked={celsius}
-        onChange={() => setCelsius(!celsius)}
-      /> F</label>
+      <div className="toogleUnits">
+        <label htmlFor="units">
+          C
+          <input
+            type="checkbox"
+            name="units"
+            id="units"
+            checked={celsius}
+            onChange={() => setCelsius(!celsius)}
+          />
+          F
+        </label>
+      </div>
+
       <h1>Weather App</h1>
 
       <div className="cityData">
@@ -59,20 +62,25 @@ function WeatherApp({ className }) {
       </div>
 
       <div className="todayWeather">
-        
         {celsius && todayData ? <TodayWeatherCard day={todayData} /> : null}
         {celsius && tonightData ? <TodayWeatherCard day={tonightData} /> : null}
         {!celsius && todayData ? <TodayWeatherCard day={todayDataF} /> : null}
-        {!celsius && tonightData ? <TodayWeatherCard day={tonightDataF} /> : null}
+        {!celsius && tonightData ? (
+          <TodayWeatherCard day={tonightDataF} />
+        ) : null}
       </div>
 
       <div className="weatherData">
-        {celsius? nextFiveDayData?.map((day) => {
-          return <WeatherCard key={day.number} day={day} />;
-        }): null }
-        {!celsius? nextFiveDayDataF?.map((day) => {
-          return <WeatherCard key={day.number} day={day} />;
-        }): null }
+        {celsius
+          ? nextFiveDayData?.map((day) => {
+              return <WeatherCard key={day.number} day={day} />;
+            })
+          : null}
+        {!celsius
+          ? nextFiveDayDataF?.map((day) => {
+              return <WeatherCard key={day.number} day={day} />;
+            })
+          : null}
       </div>
     </section>
   );
@@ -84,7 +92,12 @@ export default styled(WeatherApp)`
   justify-content: center;
   align-items: center;
   height: 100vh;
-
+  .toogleUnits {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 90%;
+  }
   .cityData {
     display: flex;
     justify-content: space-evenly;

@@ -16,6 +16,9 @@ function Login({ className }) {
           <LoginForm />
           <a href="/"> Forgot your password?</a>
         </div>
+        <div className="loginFooter">
+          <p>2022 © Volante Quick Connect, Volante Technologies Inc.</p>
+        </div>
       </div>
     </section>
   );
@@ -53,6 +56,14 @@ export default styled(Login)`
   a {
     text-decoration: none;
   }
+
+  .loginFooter{
+    text-align:center;
+    position: absolute;
+    bottom: 0;
+    width:50%;
+   
+  }
   @media screen and (max-width: 700px) {
     flex-direction: column;
 
@@ -67,6 +78,11 @@ export default styled(Login)`
     .hero-login {
     height: 60%;
     width:100%
+  }
+  .loginFooter{
+     
+    width:100%;
+   
   }
   }
 `;
