@@ -63,8 +63,7 @@ function WeatherApp({ className }) {
         {celsius && tonightData ? <TodayWeatherCard day={tonightData} /> : null}
         {!celsius && todayData ? <TodayWeatherCard day={todayDataF} /> : null}
         {!celsius && tonightData ? <TodayWeatherCard day={tonightDataF} /> : null}
-
-        {celsius && tonightData ? <TodayWeatherCard day={tonightData} /> : null}
+ 
       </div>
 
       <div className="weatherData">
