@@ -5,7 +5,6 @@ import WeatherCard from "../elements/WeatherCard";
 
 function WeatherApp({ className }) {
   const [weatherData, setWeatherData] = useState([]);
-
   const [celsius, setCelsius] = useState(true);
 
   useEffect(() => {
@@ -22,9 +21,7 @@ function WeatherApp({ className }) {
   const weatherDataF = [];
   JSON.parse(JSON.stringify(weatherData)).forEach((day) => {
     day.temperatureUnit = "F";
-
     day.temperature = (day.temperature * 1.8 + 32).toFixed(2);
-
     weatherDataF.push(day);
   });
 
@@ -57,17 +54,17 @@ function WeatherApp({ className }) {
       <h1>Weather App</h1>
 
       <div className="cityData">
-        <p>City: Sandiego</p>
-        <p>State: CA</p>
+        <h2>City: Sandiego, CA </h2>
+         
       </div>
 
       <div className="todayWeather">
         {celsius && todayData ? <TodayWeatherCard day={todayData} /> : null}
         {celsius && tonightData ? <TodayWeatherCard day={tonightData} /> : null}
         {!celsius && todayData ? <TodayWeatherCard day={todayDataF} /> : null}
-        {!celsius && tonightData ? (
-          <TodayWeatherCard day={tonightDataF} />
-        ) : null}
+        {!celsius && tonightData ? <TodayWeatherCard day={tonightDataF} /> : null}
+
+        {celsius && tonightData ? <TodayWeatherCard day={tonightData} /> : null}
       </div>
 
       <div className="weatherData">
@@ -91,12 +88,16 @@ export default styled(WeatherApp)`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 100%;
   .toogleUnits {
     position: absolute;
     top: 0;
     right: 0;
     width: 90%;
+  }
+  h1{
+    font-size:50px;
+    margin:40px 0 0 0;
   }
   .cityData {
     display: flex;
@@ -113,5 +114,32 @@ export default styled(WeatherApp)`
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+  }
+
+  @media screen and (max-width: 800px) {
+    h1{
+    font-size:40px;
+    margin:35px 0 0 0;
+  }
+  .todayWeather{
+    width:90%
+  }
+  .todayWeather article{
+    margin:7.5px 0;
+  }
+  }
+  @media screen and (max-width: 450px) {
+    h1{
+    font-size:30px;
+    margin:30px 0 0 0;
+  }
+  .todayWeather{
+    display:flex;
+    flex-direction:column;
+    
+  }
+  .todayWeather article{
+    width:100%
+  }
   }
 `;

@@ -19,16 +19,21 @@ function TodayWeatherCard({className, day}){
 
     return(
         <article className={className}>
-         <h2>{day?.number}</h2>   
-        <p>Day: {day?.name}  {day?.isDaytime?'☀️':'🌜'}</p>
-        <p>Date: {day?.startTime.substring(5,10)}</p>
-        <p>Temperature: {day?.temperature} °{day?.temperatureUnit}</p>
+         <h2>{day?.temperature} °{day?.temperatureUnit} <span className="dayIcon">{day?.isDaytime?'☀️':'🌜'}</span></h2>   
+        {/* <p>Day: {day?.name}  </p> */}
+        <h3>{day?.startTime.substring(5,10)}</h3>
+        
         <p>Wind Speed: {`${day?.windSpeed} [ ${windDirection[day?.windDirection]} ${day?.windDirection} ]`}</p>
-        <p>Forecast: {day?.shortForecast}</p>
+        <p>Forecast: {day?.detailedForecast}</p>
       </article>
     )
 }
 
 export default styled(TodayWeatherCard)`
+    width:40vw;
+    
+    .dayIcon{
+        font-size:40px;
+    }
     
 `

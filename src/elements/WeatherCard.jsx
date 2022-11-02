@@ -23,9 +23,9 @@ function WeatherCard({ className, day }) {
       <p>{day.startTime.substring(5, 10)} </p>
       <p>
         {" "}
-        {`${day?.windSpeed} [  ${day?.windDirection} ${
+        {`${day?.windSpeed} ${day?.windDirection} ${
           windDirection[day?.windDirection]
-        }]`}
+        }`}
       </p>
     </article>
   );
@@ -55,6 +55,35 @@ export default styled(WeatherCard)`
 
   p {
     margin: 0;
-    font-size: 14px;
+    font-size: 16px;
+  }
+  p:nth-child(4) {
+    margin: 0;
+    font-size: 12px;
+  }
+  @media screen and (max-width: 800px) {
+    width:110px;
+    margin:10px;
+    padding:10px
+  }
+  h2{
+    font-size:22px
+  }
+   
+   
+  @media screen and (max-width: 450px) {
+    width:100px;
+    margin:8px;
+    padding:5px
+  }
+  h2{
+    font-size:20px
+  }
+  p{
+    font-size:14px
+  }
+  p:nth-child(4) {
+    
+    font-size: 10px;
   }
 `;
