@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import TodayWeatherCard from "../elements/TodayWeatherCard";
 import WeatherCard from "../elements/WeatherCard";
- 
 
 function WeatherApp({ className }) {
   const [weatherData, setWeatherData] = useState([]);
@@ -17,20 +17,33 @@ function WeatherApp({ className }) {
     fetchData();
   }, []);
 
-  //console.log(weatherData);
+  const todayData = weatherData[0]
+  const tonightData = weatherData[1]
+  const nextFiveDayData = [...weatherData].splice(2,10) 
+   
+
+  console.log(todayData)
+
 
   return (
     <section className={className}>
       <h1>Weather App</h1>
       <div className="cityData">
-        
         <p>City: Sandiego</p>
         <p>State: CA</p>
       </div>
-      
-      {weatherData?.map((day)=>{
-        return(<WeatherCard key={day.number} day={day}/>)
+      <div className="todayWeather">
+        
+        {todayData?<TodayWeatherCard day={todayData}/>:null}
+        
+        <TodayWeatherCard day={tonightData}/>
+      </div>
+      <div className="weatherData">
+      {nextFiveDayData?.map((day) => {
+        return <WeatherCard key={day.number} day={day} />;
       })}
+      </div>
+
     </section>
   );
 }
@@ -46,5 +59,16 @@ export default styled(WeatherApp)`
     display: flex;
     justify-content: space-evenly;
     width: 80%;
+  }
+  .todayWeather{
+    display: flex;
+    justify-content: space-evenly;
+    width: 80%;
+  }
+  .weatherData{
+    display:flex;
+    flex-direction:row;
+    flex-wrap:wrap;
+    justify-content: center
   }
 `;
