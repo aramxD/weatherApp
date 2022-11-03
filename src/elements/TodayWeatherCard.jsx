@@ -19,7 +19,8 @@ function TodayWeatherCard({className, day}){
 
     return(
         <article className={className}>
-         <h2>{day?.temperature} °{day?.temperatureUnit} <span className="dayIcon">{day?.isDaytime?'☀️':'🌜'}</span></h2>   
+         <h2>{day?.name}  {'----->'} {day?.temperature} °{day?.temperatureUnit} <span className="dayIcon">{day?.isDaytime?'☀️':'🌜'}</span></h2>   
+        
         {/* <p>Day: {day?.name}  </p> */}
         <h3>{day?.startTime.substring(5,10)}</h3>
         
