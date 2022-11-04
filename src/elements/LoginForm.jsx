@@ -15,7 +15,7 @@ function checkPassword(user, password) {
   }
 }
 
-console.log();
+
 
 function LoginForm({ className }) {
   const [user, setUser] = useState("");
@@ -32,13 +32,13 @@ function LoginForm({ className }) {
       setError(true);
     }
 
-    console.log(user, password);
+    
   };
   return (
     <>
       <form className={className} onSubmit={handleLogin}>
         <div className="inputForm">
-          <i class="bx bxs-user"></i>
+          <i className="bx bxs-user"></i>
           <input
             placeholder={`Username`}
             type="text"
@@ -49,7 +49,7 @@ function LoginForm({ className }) {
         </div>
 
         <div className="inputForm">
-          <i class="bx bx-key"></i>
+          <i className="bx bx-key"></i>
           <input
             placeholder={`Password`}
             type="password"
@@ -58,6 +58,7 @@ function LoginForm({ className }) {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
+
         <button type="submit">LOGIN</button>
         <div className={`${!error && "errorMessage"}`}>
           <h3> Error User or Password is invalid</h3>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import TodayWeatherCard from "../elements/TodayWeatherCard";
 import WeatherCard from "../elements/WeatherCard";
+import Swtich from '../elements/Swtich'
 
 function WeatherApp({ className }) {
   const [weatherData, setWeatherData] = useState([]);
@@ -26,18 +27,30 @@ function WeatherApp({ className }) {
   });
 
   // Datos en Celsius
-  const todayData = weatherData.find((day) => day.name === "Today");
+  const todayData = weatherData.find((day) => day.name === "Today" || weatherData[0].name === "Afternoon");
   const tonightData = weatherData.find((day) => day.name === "Tonight");
-  const nextFiveDayData = [...weatherData].splice(2, 10);
+  let  nextFiveDayData = [...weatherData].splice(2, 10);
+  // if (weatherData[0].name === "Tonight" ) {
+  //     nextFiveDayData = [...weatherData].splice(1, 10);
+  // } else {
+  //    nextFiveDayData = [...weatherData].splice(2, 10);
+  // }
 
+  
   // Datos en Farenheit
-  const todayDataF = weatherDataF.find((day) => day.name === "Today");
+  const todayDataF = weatherDataF.find((day) => day.name === "Today" || weatherData[0].name === "Afternoon");
   const tonightDataF = weatherDataF.find((day) => day.name === "Tonight");
-  const nextFiveDayDataF = [...weatherDataF].splice(2, 10);
-
+  let  nextFiveDayDataF = [...weatherDataF].splice(2, 10);
+  // if (weatherData[0].name === "Tonight") {
+  //     nextFiveDayDataF = [...weatherDataF].splice(1, 10);
+  // } else {
+  //    nextFiveDayDataF = [...weatherDataF].splice(2, 10);
+  // }
+  
+  
   return (
     <section className={className}>
-      <div className="toogleUnits">
+      {/* <div className="toogleUnits">
         <label htmlFor="units">
           C
           <input
@@ -49,13 +62,17 @@ function WeatherApp({ className }) {
           />
           F
         </label>
-      </div>
+      </div> */}
+      <Swtich 
+        label={{1:'C',2:'F'}}
+        celsius={celsius} 
+        setCelsius={setCelsius}
+        />
 
       <h1>Weather App</h1>
 
       <div className="cityData">
         <h2>City: Sandiego, CA </h2>
-         
       </div>
 
       <div className="todayWeather">
@@ -63,7 +80,6 @@ function WeatherApp({ className }) {
         {celsius && tonightData ? <TodayWeatherCard day={tonightData} /> : null}
         {!celsius && todayData ? <TodayWeatherCard day={todayDataF} /> : null}
         {!celsius && tonightData ? <TodayWeatherCard day={tonightDataF} /> : null}
- 
       </div>
 
       <div className="weatherData">
@@ -94,9 +110,9 @@ export default styled(WeatherApp)`
     right: 0;
     width: 90%;
   }
-  h1{
-    font-size:50px;
-    margin:40px 0 0 0;
+  h1 {
+    font-size: 50px;
+    margin: 40px 0 0 0;
   }
   .cityData {
     display: flex;
@@ -116,29 +132,28 @@ export default styled(WeatherApp)`
   }
 
   @media screen and (max-width: 800px) {
-    h1{
-    font-size:40px;
-    margin:35px 0 0 0;
-  }
-  .todayWeather{
-    width:90%
-  }
-  .todayWeather article{
-    margin:7.5px 0;
-  }
+    h1 {
+      font-size: 40px;
+      margin: 35px 0 0 0;
+    }
+    .todayWeather {
+      width: 90%;
+    }
+    .todayWeather article {
+      margin: 7.5px 0;
+    }
   }
   @media screen and (max-width: 450px) {
-    h1{
-    font-size:30px;
-    margin:30px 0 0 0;
-  }
-  .todayWeather{
-    display:flex;
-    flex-direction:column;
-    
-  }
-  .todayWeather article{
-    width:100%
-  }
+    h1 {
+      font-size: 30px;
+      margin: 30px 0 0 0;
+    }
+    .todayWeather {
+      display: flex;
+      flex-direction: column;
+    }
+    .todayWeather article {
+      width: 100%;
+    }
   }
 `;
