@@ -50,19 +50,6 @@ function WeatherApp({ className }) {
   
   return (
     <section className={className}>
-      {/* <div className="toogleUnits">
-        <label htmlFor="units">
-          C
-          <input
-            type="checkbox"
-            name="units"
-            id="units"
-            checked={celsius}
-            onChange={() => setCelsius(!celsius)}
-          />
-          F
-        </label>
-      </div> */}
       <Swtich 
         label={{1:'C',2:'F'}}
         celsius={celsius} 
@@ -104,12 +91,7 @@ export default styled(WeatherApp)`
   justify-content: center;
   align-items: center;
   height: 100%;
-  .toogleUnits {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 90%;
-  }
+  
   h1 {
     font-size: 50px;
     margin: 40px 0 0 0;
