@@ -13,6 +13,8 @@ function Login({ className }) {
         <div className="content-login">
           <h2>Volante QuickConnect</h2>
           <p>Please login to your platform</p>
+          <p>User = any name</p>
+          <p>Password = same name without vowels</p>
           <LoginForm />
           <a href="/"> Forgot your password?</a>
         </div>
